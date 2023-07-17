@@ -1,0 +1,351 @@
+/* FONTS */
+@font-face {
+    font-family: 'Josefin Sans';
+    src: local('Josefin Sans'), url(fonts/JosefinSans-Light.ttf);
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Josefin Sans';
+    src: local('Josefin Sans'), url(fonts/JosefinSans-Regular.ttf);
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Josefin Sans';
+    src: local('Josefin Sans'), url(fonts/JosefinSans-SemiBold.ttf);
+    font-weight: bold;
+    font-display: swap;
+}
+
+/* CUSTOM PROPERTIES */
+:root {
+    --clr-primary-1: hsl(0, 36%, 70%);
+    --clr-primary-2: hsl(0, 93%, 68%);
+    --clr-neutral: hsl(0, 6%, 24%);
+    --clr-body-1: hsl(0, 0%, 100%);
+    --clr-body-2: hsl(0, 100%, 98%);
+    --clr-btn-1: hsl(0, 80%, 86%);
+    --clr-btn-2: hsl(0, 74%, 74%);
+    --clr-body: linear-gradient(135deg, var(--clr-body-1), var(--clr-body-2));
+    --clr-btn: linear-gradient(135deg, var(--clr-btn-1), var(--clr-btn-2));
+
+    --ff: 'Josefin Sans', sans-serif;
+}
+
+/* RESET */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    list-style: none;
+}
+
+picture,
+img,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+.sr-only {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+body {
+    height: 100vh;
+    line-height: 1;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    background: var(--clr-body);
+    background-attachment: fixed;
+    font-family: var(--ff);
+    min-width: 20rem;
+}
+
+/* HEADER */
+.head {
+    width: min(50%, 14rem);
+    padding: 2rem;
+}
+
+.head__logo {
+    width: 100%;
+}
+
+/* IMAGE */
+.hero img {
+    width: 100%;
+    max-height: 30rem;
+    object-fit: cover;
+}
+
+/* MAIN */
+.info {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    width: min(84%, 30rem);
+    margin: 4rem auto 1rem;
+    text-align: center;
+    font-size: clamp(0.88rem, 3vw, 1rem);
+    color: var(--clr-primary-1);
+}
+
+.info__title {
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    letter-spacing: 0.75rem;
+    color: var(--clr-neutral);
+}
+
+.info__title span {
+    display: block;
+    color: var(--clr-primary-1);
+    font-weight: 300;
+}
+
+.info__description {
+    line-height: 1.5;
+}
+
+.info__form {
+    position: relative;
+    margin-top: 1rem;
+}
+
+.form__email {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: transparent;
+    border: 0.1rem solid var(--clr-primary-1);
+    border-radius: 2rem;
+    opacity: 0.5;
+}
+
+.form__email:focus {
+    opacity: 1;
+}
+
+::placeholder {
+    color: var(--clr-primary-1);
+}
+
+.form__email:focus::placeholder {
+    opacity: 0;
+}
+
+.form__btn {
+    position: absolute;
+    top: 0%;
+    right: -1%;
+    height: 100%;
+    width: 22.5%;
+    display: grid;
+    place-content: center;
+    background-image: var(--clr-btn);
+    border-radius: 2rem;
+    box-shadow: 0 1rem 2rem -0.5rem var(--clr-primary-1);
+    cursor: pointer;
+}
+
+.form__btn:hover,
+.form__btn:focus-visible {
+    background-image: none;
+    background-color: var(--clr-btn-1);
+}
+
+.form__icon {
+    position: absolute;
+    top: 25%;
+    right: 22.5%;
+    display: none;
+}
+
+.form__message {
+    position: absolute;
+    left: 5%;
+    top: 110%;
+    font-size: 80%;
+    color: var(--clr-primary-2);
+    display: none;
+}
+
+.form__ty {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    background-color: var(--clr-neutral);
+    border-radius: 0.5rem;
+    text-align: center;
+    color: var(--clr-body-1);
+    line-height: 1.25;
+    padding: 1rem;
+    box-shadow: 0 0.5rem 2rem -1rem var(--clr-neutral);
+    display: none;
+}
+
+.info__form.valid>*:not(.form__ty) {
+    visibility: hidden;
+}
+
+.info__form.valid .form__ty {
+    display: grid;
+}
+
+.info__form.invalid .form__email {
+    outline: 0.15rem solid var(--clr-primary-2);
+    outline-offset: -0.15rem;
+    opacity: 1;
+}
+
+.info__form.invalid .form__icon,
+.info__form.invalid .form__message {
+    display: block;
+}
+
+/* DESKTOP */
+@media screen and (min-width: 60rem) {
+    body {
+        grid-template-columns: 1.36fr 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+            'head hero'
+            'main hero'
+            'foot hero';
+        background-image: url(images/bg-pattern-desktop.svg), var(--clr-body);
+        background-size: 58% 100%;
+        background-position: -0.5rem 0;
+    }
+
+    header {
+        grid-area: head;
+    }
+
+    .head {
+        width: min(39%, 30rem);
+        padding: 4.05rem 0 0 20%;
+    }
+
+    .hero {
+        grid-area: hero;
+    }
+
+    .hero img {
+        max-height: none;
+        height: 100%;
+    }
+
+    .info {
+        grid-area: main;
+        align-content: center;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 4rem 27% 1.1rem 20%;
+        font-size: clamp(1rem, 1vw, 1.5rem);
+        gap: 1.125rem;
+    }
+
+    .info__title {
+        font-size: clamp(4rem, 4vw, 6rem);
+        line-height: 1.11;
+        letter-spacing: 1.05rem;
+    }
+
+    .info__title span {
+        line-height: 1;
+    }
+
+    .info__description {
+        line-height: 1.75;
+    }
+
+    .info__form {
+        margin-top: 1.375rem;
+    }
+
+    .form__email {
+        padding: 1.2rem 1.85rem;
+    }
+
+    .attribution {
+        grid-area: foot;
+    }
+}
+
+/* FOOTER */
+.attribution {
+    display: flex;
+    padding: 1rem;
+    text-align: center;
+    font-size: clamp(0.8rem, 1vw, 1.2rem);
+    color: var(--clr-neutral);
+    line-height: 1.25;
+    position: relative;
+}
+
+.attribution a {
+    color: var(--clr-neutral);
+}
+
+.attr__btn {
+    width: 2.5rem;
+    box-shadow: 0 0.5rem 1rem -0.5rem var(--clr-neutral);
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.attr__btn:hover,
+.attr__btn:focus-visible {
+    transform: scale(0.9);
+}
+
+.attr__tooltip {
+    position: absolute;
+    background-color: var(--clr-primary-1);
+    padding: 0.5rem 1rem;
+    top: 0;
+    left: 4.5rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.25s;
+}
+
+.attr__tooltip::before {
+    content: '';
+    position: absolute;
+    top: 45%;
+    right: 98%;
+    border-width: 0.5rem 1rem 0.5rem 0;
+    border-style: solid;
+    border-color: transparent;
+    border-right-color: var(--clr-primary-1);
+    transform: rotate(-20deg);
+}
+
+.show {
+    visibility: visible;
+    opacity: 1;
+}
