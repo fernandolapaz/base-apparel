@@ -44,9 +44,9 @@
       Add your email below to stay up-to-date with announcements and our
       launch deals.
     </p>
-    <form action="#" class="info__form" autocomplete="off" novalidate>
-      <label for="form__email" class="sr-only">
-        Please enter your email address
+    <form action="#" class="info__form" novalidate>
+      <label for="form__email" class="form__label sr-only">
+        Enter your email address
       </label>
       <input
         type="email"
@@ -55,6 +55,7 @@
         name="email"
         minlength="8"
         maxlength="40"
+        required
       >
       <button
         type="submit"
@@ -73,7 +74,7 @@
         width="24"
         height="24"
       >
-      <p class="form__message"></p>
+      <p class="form__message" id="form__message"></p>
       <p class="form__ty">Thank you! We will keep you informed with
         announcements</p>
     </form>

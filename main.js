@@ -1,6 +1,9 @@
 // FORM
 const form = document.querySelector('.info__form')
 const email = document.querySelector('.form__email')
+const label = document.querySelector('.form__label')
+const errorMessage = document.querySelector('.form__message')
+const tyMessage = document.querySelector('.form__ty')
 
 // Submit
 form.addEventListener('submit', function (e) {
@@ -11,28 +14,34 @@ form.addEventListener('submit', function (e) {
 // Check
 function check() {
     const value = email.value.trim()
-    const message = document.querySelector('.form__message')
 
     function success() {
         form.classList.add('valid')
+        form.classList.remove('invalid')
+        email.removeAttribute('aria-invalid')
+        email.removeAttribute('aria-describedby')
+        tyMessage.setAttribute('role', 'alert')
+    }
+
+    function error() {
+        form.classList.add('invalid')
+        email.focus()
+        email.setAttribute('aria-invalid', 'true')
+        email.setAttribute('aria-describedby', 'form__message')
+        email.removeAttribute('placeholder')
+        label.setAttribute('aria-hidden', 'true')
     }
 
     if (/.+@.+\..+/.test(value)) {
-        setTimeout(success, 400)
+        setTimeout(success, 250)
     } else if (value === '') {
-        form.classList.add('invalid')
-        message.innerHTML = 'Please provide an email'
+        errorMessage.innerText = 'Please provide an email'
+        error()
     } else {
-        form.classList.add('invalid')
-        message.innerHTML = `"${value}" is not a valid email`
+        errorMessage.innerText = `"${value}" is not a valid email`
+        error()
     }
 }
-
-// Clear
-email.addEventListener('focus', function () {
-    form.classList.remove('invalid')
-    email.value = ''
-})
 
 // Typewriter animation
 let i = 0

@@ -62,6 +62,12 @@ select {
     font: inherit;
 }
 
+/* Accessibility */
+*:focus-visible {
+    outline: 0.25rem dashed dodgerblue;
+    outline-offset: 0.15rem;
+}
+
 .sr-only {
     position: absolute;
     width: 0;
@@ -69,6 +75,7 @@ select {
     overflow: hidden;
 }
 
+/* BODY */
 body {
     height: 100vh;
     line-height: 1;
@@ -84,6 +91,11 @@ body {
 .head {
     width: min(50%, 14rem);
     padding: 2rem;
+}
+
+.head a {
+    /* To show the outline when keyboard focusing */
+    display: inline-block;
 }
 
 .head__logo {
