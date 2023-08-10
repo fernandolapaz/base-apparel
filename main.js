@@ -43,6 +43,13 @@ function check() {
     }
 }
 
+// Clear
+email.addEventListener('keydown', function () {
+    form.classList.remove('invalid')
+    email.removeAttribute('aria-invalid')
+    email.removeAttribute('aria-describedby')
+})
+
 // Typewriter animation
 let i = 0
 let placeholder = ""
